@@ -24,7 +24,7 @@ function get_meta_val_list_init() {
     $args = array(
       'numberports' => $numports,
     );
-    return array_filter(
+    return array_merge(array_filter(
       array_map(function($a) use ($meta_val) {
         $pid = $a->ID;
         $jids = \get_post_meta($pid, $meta_val, false);
@@ -38,7 +38,7 @@ function get_meta_val_list_init() {
       function($a) {
         return $a !== array();
       }
-    );
+    ));
   }
 
   \add_action('rest_api_init', function () {
