@@ -21,8 +21,10 @@ function get_meta_val_list_init() {
   function get_meta_val_list($data) {
     $meta_val = 'job_id';
     $meta_val = $data['meta_val'];
+    $numposts = $data['numposts'];
+    // configuration for `get_post`.
     $args = array(
-      'numberports' => $numports,
+      'numberposts' => $numposts,
     );
     return array_merge(array_filter(
       array_map(function($a) use ($meta_val) {
@@ -42,8 +44,7 @@ function get_meta_val_list_init() {
   }
 
   \add_action('rest_api_init', function () {
-    \register_rest_route('meta_val/v1', '/posts/(?P<meta_val>.+)/(?P<numports>[0-9\-]+)',
-    // \register_rest_route('meta_val/v1', '/meta_vals',
+    \register_rest_route('meta_val/v1', '/posts/(?P<meta_val>.+)/(?P<numposts>[0-9\-]+)',
       array(
   		  'methods' => 'GET',
         'callback' => __NAMESPACE__ . '\\get_meta_val_list',
