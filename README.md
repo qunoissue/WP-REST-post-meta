@@ -8,7 +8,7 @@ Requires WP API Version 2.0 Beta 13.1 or higher.
 ## Usage
 
 ```
-$ curl --user "$username:$password" -X GET http://example.com/wp-json/meta_val/v1/posts/some_param/numposts=-1/offset=0 | jq
+$ curl --user "$username:$password" -X GET http://example.com/wp-json/meta_val/v1/posts/some_param/limit/-1/offset/0 | jq
 [
   {
     "some_param": "34",
@@ -21,5 +21,3 @@ $ curl --user "$username:$password" -X GET http://example.com/wp-json/meta_val/v
   ...
 ]
 ```
-
-Note that `numposts` and `offset` are required options.
