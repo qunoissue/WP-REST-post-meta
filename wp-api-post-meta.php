@@ -3,7 +3,7 @@
 Plugin Name:  WP REST API extra routes for post meta
 Plugin URI:   https://github.com/arowM/WP-REST-post-meta
 Description:  Extra routes for WP REST API2 to manage post meta data
-Version:      0.0.1
+Version:      1.0.0
 Author:       Kadzuya Okamoto
 Author URI:   http://www.arow.info
 License:      MIT License
