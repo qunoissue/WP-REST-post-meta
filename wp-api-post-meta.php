@@ -1,15 +1,14 @@
 <?php
 /*
-Plugin Name:  WP REST API extra routes for post meta
-Plugin URI:   https://github.com/arowM/WP-REST-post-meta
-Description:  Extra routes for WP REST API2 to manage post meta data
+Plugin Name:  WP REST API extra routes for 'job-posting' meta
+Plugin URI:   https://github.com/qunoissue/WP-REST-post-meta
+Description:  Extra routes for WP REST API2 to manage post meta data of post_type 'job-posting'
 Version:      1.0.0
-Author:       Kadzuya Okamoto
-Author URI:   http://www.arow.info
+Author:       Tomone Akashi (original: Kadzuya Okamoto)
 License:      MIT License
 */
 
-namespace WPAPIPostMeta;
+namespace WPAPIJobPostingMeta;
 
 function get_meta_val_list_init() {
   /**
@@ -28,6 +27,7 @@ function get_meta_val_list_init() {
       'numberposts' => $numposts,
       'post_status' => 'any',
       'offset' => $offset,
+      'post_type' => 'job-posting'
     );
     return array_merge(array_filter(
       array_map(function($a) use ($meta_val) {
@@ -47,7 +47,7 @@ function get_meta_val_list_init() {
   }
 
   \add_action('rest_api_init', function () {
-    \register_rest_route('meta_val/v1', '/posts/(?P<meta_val>.+)/limit/(?P<numposts>[0-9\-]+)/offset/(?P<offset>[0-9]+)',
+    \register_rest_route('meta_val/v2', '/job-posting/(?P<meta_val>.+)/limit/(?P<numposts>[0-9\-]+)/offset/(?P<offset>[0-9]+)',
       array(
   		  'methods' => 'GET',
         'callback' => __NAMESPACE__ . '\\get_meta_val_list',
