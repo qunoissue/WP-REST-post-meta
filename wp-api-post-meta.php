@@ -28,6 +28,7 @@ function get_meta_val_list_init() {
       'numberposts' => $numposts,
       'post_status' => 'any',
       'offset' => $offset,
+      'post_type' => 'job-posting'
     );
     return array_merge(array_filter(
       array_map(function($a) use ($meta_val) {
@@ -47,7 +48,7 @@ function get_meta_val_list_init() {
   }
 
   \add_action('rest_api_init', function () {
-    \register_rest_route('meta_val/v1', '/posts/(?P<meta_val>.+)/limit/(?P<numposts>[0-9\-]+)/offset/(?P<offset>[0-9]+)',
+    \register_rest_route('meta_val/v2', '/job-posting/(?P<meta_val>.+)/limit/(?P<numposts>[0-9\-]+)/offset/(?P<offset>[0-9]+)',
       array(
   		  'methods' => 'GET',
         'callback' => __NAMESPACE__ . '\\get_meta_val_list',
